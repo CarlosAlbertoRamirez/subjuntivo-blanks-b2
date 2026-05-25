@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subjuntivo · Indicativo · Infinitivo B1–B2 | Your Mexican Friend</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cyan:#25d9ff;--cyan2:#00bfff;--magenta:#ff2bbf;--magenta2:#ff4fd8;
+  --amber:#f59e0b;--amber2:#fbbf24;--violet:#a78bfa;--violet2:#c4b5fd;
+  --teal:#2dd4bf;--teal2:#5eead4;
+  --bg1:#070019;--bg2:#160033;--text:#f0f0ff;--muted:#a8abce;--muted2:#5a5d8a;
+  --good:#22c55e;--bad:#ef4444;--warn:#f59e0b;
+  --font:'DM Sans',system-ui,sans-serif;--display:'Syne',system-ui,sans-serif;
+  --shadow:0 20px 40px rgba(0,0,0,.4),0 0 28px rgba(255,43,191,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:radial-gradient(ellipse at 10% 10%,rgba(255,43,191,.13),transparent 28%),radial-gradient(ellipse at 90% 15%,rgba(37,217,255,.09),transparent 28%),linear-gradient(155deg,var(--bg1),var(--bg2));color:var(--text);min-height:100vh}
+.app{width:min(980px,96%);margin:14px auto 40px;display:flex;flex-direction:column;gap:12px}
+
+/* HERO */
+.hero{border-radius:22px;padding:22px 26px;background:linear-gradient(130deg,#0a0022,#1c0050 55%,#0c002e);border:1px solid rgba(255,255,255,.09);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:38px 38px;pointer-events:none}
+.hero-in{position:relative;z-index:1;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo-box{width:64px;height:64px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#0c0030,#280060);border:2px solid rgba(37,217,255,.28);box-shadow:0 0 18px rgba(255,43,191,.22);font-family:var(--display);font-size:1rem;font-weight:900;color:var(--magenta);text-shadow:1px 1px 0 var(--cyan)}
+.hero-text h1{font-family:var(--display);font-size:clamp(1.4rem,2.6vw,2.3rem);font-weight:900;line-height:.95;background:linear-gradient(90deg,#fff 20%,var(--cyan) 55%,var(--magenta) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-text p{color:var(--muted);font-size:.86rem;line-height:1.5;margin-top:4px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:999px;padding:3px 10px;font-size:.7rem;font-weight:700;color:var(--muted)}
+.badge.c{border-color:rgba(37,217,255,.3);color:var(--cyan)}
+.badge.m{border-color:rgba(255,43,191,.3);color:var(--magenta2)}
+.badge.a{border-color:rgba(245,158,11,.3);color:var(--amber2)}
+.badge.v{border-color:rgba(167,139,250,.3);color:var(--violet2)}
+.badge.t{border-color:rgba(45,212,191,.3);color:var(--teal2)}
+
+/* PAGE TABS */
+.page-tabs{display:flex;gap:8px;background:linear-gradient(180deg,rgba(18,4,42,.97),rgba(24,10,52,.97));border:1px solid rgba(37,217,255,.13);border-radius:18px;padding:10px;box-shadow:var(--shadow)}
+.ptab{flex:1;border:0;border-radius:11px;padding:11px 10px;font-weight:800;font-family:var(--font);font-size:.84rem;cursor:pointer;transition:.18s;color:var(--muted);background:transparent;display:flex;flex-direction:column;align-items:center;gap:3px}
+.ptab:hover{background:rgba(255,255,255,.07);color:var(--text)}
+.ptab.active{color:white;box-shadow:0 3px 0 rgba(0,0,0,.2);transform:translateY(-1px)}
+.ptab-num{font-family:var(--display);font-size:1.1rem;font-weight:900}
+.ptab-label{font-size:.68rem;opacity:.85;text-align:center;line-height:1.3}
+.ptab-modes{display:flex;gap:3px;flex-wrap:wrap;justify-content:center;margin-top:3px}
+.ptab-dot{width:7px;height:7px;border-radius:50%}
+
+/* PANEL */
+.panel{background:linear-gradient(180deg,rgba(18,4,42,.97),rgba(24,10,52,.97));border:1px solid rgba(37,217,255,.13);border-radius:20px;padding:26px 30px;box-shadow:var(--shadow)}
+.hidden{display:none!important}
+
+/* PAGE HEADER */
+.page-header{margin-bottom:18px}
+.page-title{font-family:var(--display);font-size:1.2rem;font-weight:800;margin-bottom:3px}
+.page-subtitle{font-size:.8rem;color:var(--muted2);margin-bottom:12px}
+.fill-instr{font-size:.87rem;color:var(--muted);line-height:1.6;padding:10px 14px;background:rgba(37,217,255,.07);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;margin-bottom:14px}
+.fill-instr em{color:var(--cyan);font-style:normal;font-weight:700}
+
+/* MODE LEGEND */
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.leg{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:3px 10px;font-size:.7rem;font-weight:700;color:var(--muted)}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* SCORE BAR */
+.score-bar{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.sc{display:flex;flex-direction:column;align-items:center;gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(37,217,255,.12);border-radius:12px;padding:7px 12px}
+.sc .l{font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2)}
+.sc .v{font-family:var(--display);font-size:1.2rem;font-weight:800;color:var(--cyan)}
+.sc .v.g{color:var(--good)}.sc .v.b{color:var(--bad)}
+.prog-w{flex:1;min-width:120px}
+.prog-l{font-size:.66rem;color:var(--muted2);font-weight:700;margin-bottom:4px}
+.prog-t{height:6px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
+.prog-f{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--magenta));transition:width .4s}
+
+/* PROSE */
+.prose{font-size:1rem;line-height:2.3;color:var(--text)}
+.prose p{margin-bottom:1.2rem}
+
+/* VERB GAP */
+.vg{display:inline-flex;align-items:center;gap:3px;position:relative;margin:0 2px;vertical-align:middle;border-radius:9px;padding:2px 5px 2px 4px;border:1px solid rgba(37,217,255,.14)}
+/* color by mode */
+.vg.ind{background:rgba(37,217,255,.05);border-color:rgba(37,217,255,.18)}
+.vg.subj-pres{background:rgba(255,43,191,.05);border-color:rgba(255,43,191,.18)}
+.vg.subj-imp{background:rgba(167,139,250,.06);border-color:rgba(167,139,250,.2)}
+.vg.subj-pp{background:rgba(45,212,191,.05);border-color:rgba(45,212,191,.18)}
+.vg.subj-plpf{background:rgba(245,158,11,.05);border-color:rgba(245,158,11,.2)}
+.vg.inf{background:rgba(251,191,36,.05);border-color:rgba(251,191,36,.18)}
+.vg select{font-family:var(--font);font-size:.91rem;font-weight:700;height:32px;padding:0 24px 0 7px;border-radius:6px;border:1.5px solid rgba(180,180,240,.22);background:rgba(255,255,255,.07);color:var(--text);cursor:pointer;appearance:none;-webkit-appearance:none;min-width:140px;max-width:220px;transition:.15s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a8abce' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.vg select option{background:#0f0230;color:var(--text)}
+.vg select:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(37,217,255,.12)}
+.vg select:hover:not([disabled]){border-color:rgba(37,217,255,.5);background:rgba(37,217,255,.09)}
+.vg .hlbl{font-size:.6rem;font-weight:800;white-space:nowrap;letter-spacing:.01em;opacity:.75}
+.vg.ind .hlbl{color:var(--cyan)}
+.vg.subj-pres .hlbl{color:var(--magenta2)}
+.vg.subj-imp .hlbl{color:var(--violet2)}
+.vg.subj-pp .hlbl{color:var(--teal2)}
+.vg.subj-plpf .hlbl{color:var(--amber2)}
+.vg.inf .hlbl{color:var(--amber2)}
+
+/* RESULT */
+.verb-result{display:none;align-items:center;gap:4px;font-weight:700;font-size:.93rem}
+.verb-result.show{display:inline-flex}
+.vr-wrong{color:#f87171;text-decoration:underline wavy #ef4444}
+.vr-right{color:#4ade80}
+.vr-info{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:rgba(37,217,255,.18);border:1px solid rgba(37,217,255,.35);color:var(--cyan);font-size:.66rem;font-weight:900;cursor:pointer;margin-left:2px;position:relative;z-index:10}
+.vr-tip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#0d1a3a;border:1px solid rgba(37,217,255,.3);color:var(--text);font-size:.75rem;font-weight:400;line-height:1.55;padding:9px 12px;border-radius:9px;z-index:100;width:270px;white-space:normal;text-align:left;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.vr-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#0d1a3a}
+.vr-info.open .vr-tip{display:block}
+
+/* FEEDBACK */
+.fill-fb{display:none;margin-top:16px;padding:13px 18px;border-radius:12px;font-size:.9rem;line-height:1.65;font-weight:500}
+.fill-fb.show{display:block}
+.fill-fb.good{background:rgba(34,197,94,.13);border-left:4px solid var(--good);color:#bbf7d0;border-radius:0 12px 12px 0}
+.fill-fb.partial{background:rgba(245,158,11,.11);border-left:4px solid var(--warn);color:#fde68a;border-radius:0 12px 12px 0}
+.fill-fb.bad{background:rgba(239,68,68,.12);border-left:4px solid var(--bad);color:#fecaca;border-radius:0 12px 12px 0}
+
+/* ACTIONS */
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.btn{border:0;border-radius:11px;padding:10px 18px;font-weight:800;font-family:var(--font);font-size:.84rem;cursor:pointer;transition:.16s;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0);box-shadow:none}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#07111f}
+.btn-ghost{background:rgba(255,255,255,.08);color:var(--text);border:1px solid rgba(37,217,255,.18)}
+.btn-dark{background:#0b0220;color:var(--muted);border:1px solid rgba(255,255,255,.08)}
+.btn-next{background:linear-gradient(135deg,var(--magenta),var(--magenta2));color:white}
+
+/* CHIPS */
+.vchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.vchip{border-radius:999px;padding:3px 10px;font-size:.69rem;font-weight:700}
+.vchip.ind{background:rgba(37,217,255,.09);border:1px solid rgba(37,217,255,.2);color:var(--cyan)}
+.vchip.subj-pres{background:rgba(255,43,191,.08);border:1px solid rgba(255,43,191,.2);color:var(--magenta2)}
+.vchip.subj-imp{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);color:var(--violet2)}
+.vchip.subj-pp{background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.2);color:var(--teal2)}
+.vchip.subj-plpf{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);color:var(--amber2)}
+.vchip.inf{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.18);color:var(--amber2)}
+
+/* PAGE NAV ARROWS */
+.page-nav{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+
+.creator{text-align:center;color:#4a4d78;font-size:.76rem;font-weight:700;margin-top:2px}
+.creator span{color:var(--magenta2)}
+@media(max-width:640px){.prose{font-size:.93rem;line-height:2.0}.panel{padding:18px 14px}.ptab-label{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="logo-box">YMF</div>
+    <div class="hero-text">
+      <h1>El Subjuntivo: todos los tiempos</h1>
+      <p>Textos reales · 3 páginas · 30 huecos cada una · Presente, imperfecto, presente perfecto y pluscuamperfecto de subjuntivo + indicativo e infinitivo. El verbo en infinitivo es tu única pista — el contexto decide el modo.</p>
+      <div class="badges">
+        <span class="badge c">Nivel B1–B2</span>
+        <span class="badge m">Subj. presente</span>
+        <span class="badge v">Subj. imperfecto</span>
+        <span class="badge t">Subj. pres. perfecto</span>
+        <span class="badge a">Subj. pluscuamperfecto</span>
+        <span class="badge">Indicativo · Infinitivo</span>
+        <span class="badge">By Carlos &amp; Denisse</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE TABS -->
+<div class="page-tabs" id="pageTabs">
+  <button class="ptab active" id="ptab-0" onclick="goPage(0)">
+    <span class="ptab-num">1</span>
+    <span class="ptab-label">Una carta<br>a mamá</span>
+    <span class="ptab-modes">
+      <span class="ptab-dot" style="background:#25d9ff" title="Indicativo"></span>
+      <span class="ptab-dot" style="background:#ff4fd8" title="Subj. presente"></span>
+      <span class="ptab-dot" style="background:#f59e0b" title="Infinitivo"></span>
+    </span>
+  </button>
+  <button class="ptab" id="ptab-1" onclick="goPage(1)">
+    <span class="ptab-num">2</span>
+    <span class="ptab-label">El viaje<br>que no fue</span>
+    <span class="ptab-modes">
+      <span class="ptab-dot" style="background:#25d9ff"></span>
+      <span class="ptab-dot" style="background:#a78bfa" title="Subj. imperfecto"></span>
+      <span class="ptab-dot" style="background:#2dd4bf" title="Subj. pres. perfecto"></span>
+    </span>
+  </button>
+  <button class="ptab" id="ptab-2" onclick="goPage(2)">
+    <span class="ptab-num">3</span>
+    <span class="ptab-label">Decisiones<br>de vida</span>
+    <span class="ptab-modes">
+      <span class="ptab-dot" style="background:#25d9ff"></span>
+      <span class="ptab-dot" style="background:#ff4fd8"></span>
+      <span class="ptab-dot" style="background:#a78bfa"></span>
+      <span class="ptab-dot" style="background:#2dd4bf"></span>
+      <span class="ptab-dot" style="background:#f59e0b"></span>
+    </span>
+  </button>
+</div>
+
+<div id="pageContainer"></div>
+
+<p class="creator">By <span>Carlos &amp; Denisse</span> · Your Mexican Friend</p>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   MODO CODES
+   ind       = indicativo (cualquier tiempo)
+   subj-pres = subjuntivo presente
+   subj-imp  = subjuntivo imperfecto (-ra/-se)
+   subj-pp   = subjuntivo presente perfecto (haya + pp)
+   subj-plpf = subjuntivo pluscuamperfecto (hubiera + pp)
+   inf       = infinitivo
+══════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════
+   REGLAS DE RETROALIMENTACIÓN
+══════════════════════════════════════════════════════════════ */
+const RULES = {
+  'ind': 'El <strong>indicativo</strong> describe hechos, certezas o acciones habituales. Se usa con verbos de opinión afirmativos (<em>creo que, pienso que, es obvio que</em>) o para narrar lo que ocurrió.',
+  'ind-imp': 'El <strong>imperfecto de indicativo</strong> describe estados pasados o acciones habituales en el pasado: <em>era, tenía, vivía, siempre hacía</em>.',
+  'ind-pret': 'El <strong>pretérito indefinido</strong> narra acciones concretas y terminadas en el pasado: <em>llegué, salió, dijeron</em>.',
+  'ind-fut': 'El <strong>futuro de indicativo</strong> expresa certeza sobre algo que ocurrirá: <em>llegará, estaremos</em>.',
+  'ind-cond': 'El <strong>condicional</strong> expresa hipótesis o acciones posibles: <em>hablaría, podría, tendría</em>.',
+  'subj-pres': 'El <strong>subjuntivo presente</strong> se usa para expresar deseos, emociones, dudas o valoraciones sobre acciones presentes o futuras: <em>quiero que vengas, espero que llegues, es importante que estudies</em>.',
+  'subj-imp': 'El <strong>subjuntivo imperfecto</strong> (-ra/-se) aparece cuando el verbo principal está en pasado o condicional: <em>quería que vinieras, sería bueno que estudiara, si tuviera tiempo…</em>',
+  'subj-pp': 'El <strong>subjuntivo presente perfecto</strong> (<em>haya + participio</em>) expresa duda, emoción o valoración sobre algo que ya ha ocurrido: <em>espero que hayas llegado, me alegra que hayan terminado</em>.',
+  'subj-plpf': 'El <strong>subjuntivo pluscuamperfecto</strong> (<em>hubiera + participio</em>) expresa irrealidad o condición no cumplida en el pasado: <em>si hubiera sabido, no habría ido; ojalá hubiera llegado antes</em>.',
+  'inf': 'El <strong>infinitivo</strong> se usa cuando los dos verbos comparten el mismo sujeto (<em>quiero hablar, necesito dormir</em>) o después de preposiciones (<em>para estudiar, antes de salir, sin pensar</em>).',
+};
+
+function getRule(mode, extra) {
+  return RULES[extra] || RULES[mode] || RULES['ind'];
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PÁGINA 1 — "Una carta a mamá"
+   Sofía escribe desde Barcelona a su familia en México.
+   Tiempos: indicativo (presente/pret/fut), subjuntivo presente, infinitivo.
+   30 huecos.
+══════════════════════════════════════════════════════════════ */
+const PAGE1 = {
+  title: 'Página 1 · Una carta a mamá',
+  subtitle: 'Sofía escribe desde Barcelona a su familia en México.',
+  modes: ['Indicativo','Subj. presente','Infinitivo'],
+  modeColors: ['#25d9ff','#ff4fd8','#f59e0b'],
+  // BLANKS: [modo, verbo-display, respuesta, [distractores], ruleKey]
+  blanks: [
+    // 1
+    ['ind','llevar','llevo',['lleve','llevar','llevaba'],'ind'],
+    // 2
+    ['subj-pres','extrañar','extrañe',['extraño','extrañar','extrañaba'],'subj-pres'],
+    // 3
+    ['inf','escribir','escribir',['escribo','escriba','escribiendo'],'inf'],
+    // 4
+    ['ind','saber','sé',['sepa','saber','sabía'],'ind'],
+    // 5
+    ['subj-pres','preocuparse','te preocupes',['te preocupas','preocuparte','te preocupabas'],'subj-pres'],
+    // 6
+    ['ind','estar','estoy',['esté','estar','estaba'],'ind'],
+    // 7
+    ['subj-pres','tener','tengas',['tienes','tener','tuvieras'],'subj-pres'],
+    // 8
+    ['inf','adaptarse','adaptarme',['me adapte','me adapto','adaptándome'],'inf'],
+    // 9
+    ['ind','costar','costó',['cueste','costar','costaba'],'ind-pret'],
+    // 10
+    ['subj-pres','entender','entiendas',['entiendes','entender','entendieras'],'subj-pres'],
+    // 11
+    ['ind','decidir','decidí',['decida','decidir','decidía'],'ind-pret'],
+    // 12
+    ['subj-pres','poder','puedas',['puedes','poder','pudieras'],'subj-pres'],
+    // 13
+    ['inf','verla','verla',['la vea','la veo','viéndola'],'inf'],
+    // 14
+    ['ind','cambiar','ha cambiado',['haya cambiado','cambiar','cambiaba'],'ind'],
+    // 15
+    ['subj-pres','quedarse','me quede',['me quedo','quedarme','me quedara'],'subj-pres'],
+    // 16
+    ['ind','pensar','pienso',['piense','pensar','pensaba'],'ind'],
+    // 17
+    ['subj-pres','venir','vengan',['vienen','venir','vinieran'],'subj-pres'],
+    // 18
+    ['inf','conocer','conocer',['conozca','conozco','conociendo'],'inf'],
+    // 19
+    ['ind','trabajar','trabajé',['trabaje','trabajar','trabajaba'],'ind-pret'],
+    // 20
+    ['subj-pres','pasar','pase',['pasa','pasar','pasara'],'subj-pres'],
+    // 21
+    ['ind','ser','fue',['sea','ser','era'],'ind-pret'],
+    // 22
+    ['subj-pres','ayudar','ayudes',['ayudas','ayudar','ayudaras'],'subj-pres'],
+    // 23
+    ['inf','llamar','llamar',['llame','llamo','llamando'],'inf'],
+    // 24
+    ['ind','sentirse','me siento',['me sienta','sentirme','me sentía'],'ind'],
+    // 25
+    ['subj-pres','hacer','hagas',['haces','hacer','hicieras'],'subj-pres'],
+    // 26
+    ['ind','querer','quiero',['quiera','querer','quería'],'ind'],
+    // 27
+    ['subj-pres','estar','estés',['estás','estar','estuvieras'],'subj-pres'],
+    // 28
+    ['inf','volver','volver',['vuelva','vuelvo','volviendo'],'inf'],
+    // 29
+    ['ind','contar','te cuento',['te cuente','contarte','te contaba'],'ind'],
+    // 30
+    ['subj-pres','recordar','recuerdes',['recuerdas','recordar','recordaras'],'subj-pres'],
+  ],
+  paragraphs: [
+`Querida mamá: {1|llevar} ya tres meses en Barcelona y, aunque te confieso que a veces el corazón me pide que {2|extrañar} menos, no puedo evitarlo. Me alegra tanto {3|escribir} esta carta con calma, sin prisas, como cuando éramos niñas y pasábamos las tardes en la cocina. {4|saber} que no {5|preocuparse} de más, pero a veces la distancia se siente enorme. {6|estar} bien, te lo juro.`,
+
+`Lo primero que me sorprendió fue {8|adaptarse} al horario europeo. Aquí cenan a las diez de la noche, ¡a las diez, mamá! Al principio me {9|costar} un mes entero acostumbrarme. Mi jefa me pidió desde el primer día que {10|entender} la dinámica del equipo antes de proponer cambios, y creo que fue el mejor consejo que me han dado. Cuando {11|decidir} salir de México, tú me dijiste que esperabas que {12|poder} crecer profesionalmente, y mira: aquí estoy, aprendiendo más de lo que esperaba. Ojalá puedas {13|verla} a esta Sofía más segura cuando regrese.`,
+
+`La ciudad {14|cambiar} mucho desde la última vez que vine, aunque hay cosas que siguen igual: el olor de las panaderías por la mañana, los turistas perdidos con mapas en la mano. Espero que el próximo verano {15|quedarse} unos días conmigo aquí. {16|pensar} que sería genial que papá y tú {17|venir} en julio. Tengo todo el apartamento para mostrarles y muchos lugares que {18|conocer} juntos.`,
+
+`En el trabajo {19|trabajar} hasta tarde casi todos los días de la primera semana, pero valió la pena. La directora quiere que nada {20|pasar} desapercibido en los proyectos nuevos, así que revisamos todo dos veces. La reunión del martes {21|ser} un poco larga, pero al menos me pidieron que {22|ayudar} en la presentación del cliente más importante. Eso me llenó de orgullo.`,
+
+`Antes de {23|llamar} por videollamada el domingo, escríbeme un mensaje para saber si están bien. {24|sentirse} muy afortunada de tener a una familia que, aunque lejos, siempre me hace sentir cerca. Solo te pido que no {25|hacer} grandes cambios en la cocina hasta que yo regrese, porque {26|querer} cocinar contigo como antes. {27|estar} segura de que este año nos va a cambiar a todos. Hasta entonces, seguiré aquí, con ganas de {28|volver}. {29|contar} todo lo que veo. Solo no {30|recordar} mandarme la receta del mole que prometiste. Con todo mi amor, Sofía.`
+  ]
+};
+
+/* ══════════════════════════════════════════════════════════════
+   PÁGINA 2 — "El viaje que no fue"
+   Ernesto y Claudia hablan por mensajes sobre el viaje que cancelaron.
+   Tiempos: indicativo (presente/pret/imp/cond), subjuntivo imperfecto, subj. presente perfecto.
+   30 huecos.
+══════════════════════════════════════════════════════════════ */
+const PAGE2 = {
+  title: 'Página 2 · El viaje que no fue',
+  subtitle: 'Ernesto y Claudia intercambian mensajes sobre el viaje que cancelaron en el último momento.',
+  modes: ['Indicativo','Subj. imperfecto','Subj. presente perfecto'],
+  modeColors: ['#25d9ff','#a78bfa','#2dd4bf'],
+  blanks: [
+    // 1
+    ['ind','cancelar','cancelé',['cancele','cancelar','cancelaba'],'ind-pret'],
+    // 2
+    ['subj-imp','saber','supieras',['sabes','saber','hayas sabido'],'subj-imp'],
+    // 3
+    ['ind','sentirse','me siento',['me sienta','sentirme','me sintiera'],'ind'],
+    // 4
+    ['subj-imp','poder','pudieras',['puedes','poder','hayas podido'],'subj-imp'],
+    // 5
+    ['ind','ocurrir','ocurrió',['ocurra','ocurrir','ocurría'],'ind-pret'],
+    // 6
+    ['subj-pp','llegar','hayas llegado',['llegaste','llegar','llegaras'],'subj-pp'],
+    // 7
+    ['ind','ser','era',['sea','ser','haya sido'],'ind-imp'],
+    // 8
+    ['subj-imp','haber','hubiera sabido',['ha sabido','saber','haya sabido'],'subj-plpf'],
+    // 9 — condicional ind
+    ['ind','ir','habríamos ido',['vayamos','ir','hubiéramos ido'],'ind-cond'],
+    // 10
+    ['subj-imp','decir','dijeras',['dices','decir','hayas dicho'],'subj-imp'],
+    // 11
+    ['ind','tener','tenía',['tenga','tener','haya tenido'],'ind-imp'],
+    // 12
+    ['subj-imp','cancelar','cancelara',['cancela','cancelar','haya cancelado'],'subj-imp'],
+    // 13
+    ['subj-pp','perder','hayas perdido',['perdiste','perder','perdieras'],'subj-pp'],
+    // 14
+    ['ind','querer','quería',['quiera','querer','quisiera'],'ind-imp'],
+    // 15
+    ['subj-imp','ir','fuera',['va','ir','haya ido'],'subj-imp'],
+    // 16
+    ['ind','confirmar','confirmaron',['confirmen','confirmar','confirmaban'],'ind-pret'],
+    // 17
+    ['subj-pp','avisar','hayan avisado',['avisaron','avisar','avisaran'],'subj-pp'],
+    // 18
+    ['ind','costar','costaría',['cueste','costar','costara'],'ind-cond'],
+    // 19
+    ['subj-imp','tener','tuviéramos',['tenemos','tener','hayamos tenido'],'subj-imp'],
+    // 20
+    ['subj-pp','ver','haya visto',['vi','ver','viera'],'subj-pp'],
+    // 21
+    ['ind','imaginar','me imagino',['me imagine','imaginarme','me imaginaba'],'ind'],
+    // 22
+    ['subj-imp','estar','estuviéramos',['estamos','estar','hayamos estado'],'subj-imp'],
+    // 23
+    ['subj-pp','resolver','hayamos resuelto',['resolvimos','resolver','resolviéramos'],'subj-pp'],
+    // 24
+    ['ind','poder','podemos',['podamos','poder','podríamos'],'ind'],
+    // 25
+    ['subj-imp','cambiar','cambiara',['cambia','cambiar','haya cambiado'],'subj-imp'],
+    // 26
+    ['ind','merecer','merecemos',['merezcamos','merecer','merecíamos'],'ind'],
+    // 27
+    ['subj-pp','guardar','hayas guardado',['guardaste','guardar','guardaras'],'subj-pp'],
+    // 28
+    ['ind','ir','iremos',['vayamos','ir','iríamos'],'ind-fut'],
+    // 29
+    ['subj-imp','buscar','buscáramos',['buscamos','buscar','hayamos buscado'],'subj-imp'],
+    // 30
+    ['ind','saber','sé',['sepa','saber','supiera'],'ind'],
+  ],
+  paragraphs: [
+`— Ernesto: Claudia, {1|cancelar} los vuelos esta mañana. Ojalá {2|saber} antes lo que iba a pasar. {3|sentirse} fatal, de verdad. Quería tanto que {4|poder} venir.`,
+
+`— Claudia: ¿Qué {5|ocurrir}? Estaba esperando que me {6|llegar} tu mensaje de confirmación desde el aeropuerto. Pensé que todo {7|ser} según lo planeado. Si {8|haber} algo malo antes, {9|ir} los dos juntos a hablar con la aerolínea. Pero nadie me dijo nada.`,
+
+`— Ernesto: Si tan solo me {10|decir} el viernes que tenías dudas sobre la fecha, lo hubiéramos solucionado. El problema es que mi trabajo {11|tener} esa reunión urgente el lunes y no encontré a nadie que {12|cancelar} sus planes para cubrirme. Me da mucho coraje que hayamos {13|perder} los boletos. {14|querer} que este viaje {15|ir} perfecto, pero nada salió como esperábamos.`,
+
+`— Claudia: Lo entiendo, Ernesto, de verdad. El hotel {16|confirmar} la reservación justo ayer. No puedo creer que no nos {17|avisar} antes de que hubiera un problema con las fechas. ¿Sabes cuánto {18|costar} cambiar el vuelo si {19|tener} la misma ruta? Ojalá alguien {20|ver} antes la alerta de la aerolínea.`,
+
+`— Ernesto: {21|imaginar} que en este momento {22|estar} en la playa con un mezcal en la mano. Qué coraje. Lo bueno es que {23|resolver} los depósitos del hotel sin pensar demasiado. Ahora {24|poder} reprogramar para octubre si quieres. Solo necesito que nada {25|cambiar} de mi agenda ese mes. Lo {26|merecer}, ¿no? Un descanso de verdad, sin contratiempos.`,
+
+`— Claudia: Sí. Espero que {27|guardar} los comprobantes de pago porque los vamos a necesitar para el reembolso. Te prometo que {28|ir} en octubre, sin falta. Esta vez {29|buscar} un plan B desde antes para no estar en esta situación. {30|saber} que contigo todo termina bien aunque empiece mal. Cuídate.`
+  ]
+};
+
+/* ══════════════════════════════════════════════════════════════
+   PÁGINA 3 — "Decisiones de vida"
+   Columna de opinión de una revista sobre decisiones y arrepentimientos.
+   Tiempos: todos — indicativo, subj. presente, subj. imperfecto,
+            subj. presente perfecto, subj. pluscuamperfecto, infinitivo.
+   30 huecos.
+══════════════════════════════════════════════════════════════ */
+const PAGE3 = {
+  title: 'Página 3 · Decisiones de vida',
+  subtitle: 'Columna de opinión: los arrepentimientos que nos definen — y los que no debería importarnos tener.',
+  modes: ['Indicativo','Subj. presente','Subj. imperfecto','Subj. p. perfecto','Subj. pluscuamperfecto','Infinitivo'],
+  modeColors: ['#25d9ff','#ff4fd8','#a78bfa','#2dd4bf','#f59e0b','#fbbf24'],
+  blanks: [
+    // 1 — ind
+    ['ind','tomar','tomamos',['tomemos','tomar','tomáramos'],'ind'],
+    // 2 — inf
+    ['inf','reconocer','reconocer',['reconozcamos','reconocemos','reconociendo'],'inf'],
+    // 3 — subj-pres
+    ['subj-pres','hablar','hablemos',['hablamos','hablar','habláramos'],'subj-pres'],
+    // 4 — ind
+    ['ind','saber','sabemos',['sepamos','saber','supiéramos'],'ind'],
+    // 5 — subj-plpf
+    ['subj-plpf','elegir','hubiéramos elegido',['elegimos','elegir','hayamos elegido'],'subj-plpf'],
+    // 6 — ind
+    ['ind','ser','somos',['seamos','ser','fuéramos'],'ind'],
+    // 7 — subj-imp
+    ['subj-imp','tomar','tomaras',['tomas','tomar','hayas tomado'],'subj-imp'],
+    // 8 — inf
+    ['inf','arrepentirse','arrepentirse',['se arrepienta','se arrepiente','arrepintiéndose'],'inf'],
+    // 9 — subj-pres
+    ['subj-pres','sentir','sienta',['siente','sentir','sintiera'],'subj-pres'],
+    // 10 — ind
+    ['ind','mirar','miramos',['miremos','mirar','miráramos'],'ind'],
+    // 11 — subj-plpf
+    ['subj-plpf','actuar','hubiéramos actuado',['actuamos','actuar','hayamos actuado'],'subj-plpf'],
+    // 12 — subj-imp
+    ['subj-imp','quedarse','nos quedáramos',['nos quedamos','quedarnos','nos hayamos quedado'],'subj-imp'],
+    // 13 — subj-pp
+    ['subj-pp','vivir','hayan vivido',['vivieron','vivir','vivieran'],'subj-pp'],
+    // 14 — inf
+    ['inf','dejar','dejar',['deje','deja','dejando'],'inf'],
+    // 15 — ind
+    ['ind','pensar','pensamos',['pensemos','pensar','pensáramos'],'ind'],
+    // 16 — subj-pres
+    ['subj-pres','tener','tengan',['tienen','tener','tuvieran'],'subj-pres'],
+    // 17 — subj-imp
+    ['subj-imp','poder','pudiera',['puede','poder','haya podido'],'subj-imp'],
+    // 18 — subj-pp
+    ['subj-pp','cometer','haya cometido',['cometió','cometer','cometiera'],'subj-pp'],
+    // 19 — inf
+    ['inf','aprender','aprender',['aprenda','aprende','aprendiendo'],'inf'],
+    // 20 — ind
+    ['ind','necesitar','necesitamos',['necesitemos','necesitar','necesitáramos'],'ind'],
+    // 21 — subj-plpf
+    ['subj-plpf','decir','hubiéramos dicho',['dijimos','decir','hayamos dicho'],'subj-plpf'],
+    // 22 — subj-pres
+    ['subj-pres','aceptar','aceptemos',['aceptamos','aceptar','aceptáramos'],'subj-pres'],
+    // 23 — ind-imp
+    ['ind','querer','quería',['quiera','querer','quisiera'],'ind-imp'],
+    // 24 — subj-imp
+    ['subj-imp','existir','existiera',['existe','existir','haya existido'],'subj-imp'],
+    // 25 — subj-pp
+    ['subj-pp','equivocarse','se haya equivocado',['se equivocó','equivocarse','se equivocara'],'subj-pp'],
+    // 26 — inf
+    ['inf','cambiar','cambiar',['cambie','cambia','cambiando'],'inf'],
+    // 27 — subj-plpf
+    ['subj-plpf','escuchar','hubiéramos escuchado',['escuchamos','escuchar','hayamos escuchado'],'subj-plpf'],
+    // 28 — ind
+    ['ind','seguir','seguimos',['sigamos','seguir','siguiéramos'],'ind'],
+    // 29 — subj-pres
+    ['subj-pres','perder','pierdas',['pierdes','perder','perdieras'],'subj-pres'],
+    // 30 — subj-pp
+    ['subj-pp','llegar','hayamos llegado',['llegamos','llegar','llegáramos'],'subj-pp'],
+  ],
+  paragraphs: [
+`Las decisiones que {1|tomar} a lo largo de la vida dicen mucho de quiénes somos, pero quizá más revelador aún es {2|reconocer} cuáles tomamos con miedo y cuáles con valentía. En esta columna quiero que {3|hablar} sin eufemismos sobre los arrepentimientos: esos que pesan y los que, con el tiempo, dejan de pesar. Todos {4|saber} lo que se siente cuando imaginas qué habría pasado si {5|elegir} diferente. Y sin embargo, esa persona que {6|ser} hoy existe precisamente por esas elecciones.`,
+
+`Hay quienes, al mirar atrás, desearían que alguien les {7|tomar} del brazo y los detuviera antes de cometer cierto error. Es tentador {8|arrepentirse} en silencio, sin contárselo a nadie. Pero si hay algo que me da curiosidad es que nadie {9|sentir} vergüenza de haber intentado algo aunque haya salido mal. {10|mirar} atrás solo tiene sentido si te pregunta: ¿qué harías distinto? No cómo ojalá {11|actuar}, sino qué harías con lo que sabes hoy.`,
+
+`La trampa más común es creer que habría sido mejor {12|quedarse} en el lugar seguro: el trabajo estable, la ciudad conocida, la relación cómoda. Hay personas que no {13|vivir} nada fuera de su zona de confort y que, paradójicamente, no se arrepienten de nada. Eso también es válido. Lo que no es válido es {14|dejar} que el miedo decida por ti sin que tú lo notes. {15|pensar} que nos arrepentimos más de lo que no hicimos que de lo que sí hicimos, y los estudios psicológicos dan la razón a esa intuición.`,
+
+`Es importante que las personas mayores no {16|tener} que callar sus arrepentimientos como si fueran una señal de fracaso. Ojalá cualquiera {17|poder} decir en voz alta: "me equivoqué, y está bien". No me parece mal que alguien {18|cometer} un error enorme si eso le sirvió para {19|aprender} algo que ningún libro le habría enseñado. {20|necesitar} normalizar la conversación sobre los errores como parte del crecimiento, no como cicatrices que esconder.`,
+
+`¿Qué {21|decir} a los veinte años si hubiéramos tenido la perspectiva de los cuarenta? Probablemente nada que nos hubiera convencido. Por eso propongo que {22|aceptar} el siguiente principio: no eres menos inteligente por haber decidido con la información que tenías en ese momento. En aquel entonces tú {23|querer} lo mejor para ti, aunque lo mejor no lo {24|existir} todavía. Si alguien {25|equivocarse} de camino, eso no invalida todo lo recorrido.`,
+
+`La vida no es algo que se puede {26|cambiar} de golpe como si fuera un borrador. Si {27|escuchar} a todos los que decían "eso no va a funcionar", quizá hoy {28|seguir} esperando un permiso que nadie va a darte. No {29|perder} el tiempo buscando la decisión perfecta: lo que importa es que, cuando llegue el momento de mirar atrás, sientas que vas con honestidad. Espero que en estas líneas {30|llegar} a alguna conclusión que te sirva más que cualquier arrepentimiento.`
+  ]
+};
+
+const PAGES = [PAGE1, PAGE2, PAGE3];
+
+/* ══════════════════════════════════════════════════════════════
+   ESTADO
+══════════════════════════════════════════════════════════════ */
+let currentPage = 0;
+let pageState = [
+  {checked:false, openTip:null},
+  {checked:false, openTip:null},
+  {checked:false, openTip:null},
+];
+
+/* ══════════════════════════════════════════════════════════════
+   NAVEGACIÓN
+══════════════════════════════════════════════════════════════ */
+function goPage(idx) {
+  currentPage = idx;
+  [0,1,2].forEach(i => {
+    document.getElementById('ptab-'+i).classList.toggle('active', i===idx);
+    const c = ['#25d9ff','#a78bfa','#fb923c'][i];
+    document.getElementById('ptab-'+i).style.background = i===idx
+      ? `linear-gradient(135deg,${c}cc,${c}88)` : '';
+    document.getElementById('ptab-'+i).style.border = i===idx
+      ? `1px solid ${c}55` : '';
+  });
+  renderPage(idx);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDER PAGE
+══════════════════════════════════════════════════════════════ */
+function getAnswer(page, bIdx) {
+  return page.blanks[bIdx][2];
+}
+
+function seededShuffle(arr, seed) {
+  const a = [...new Set(arr)];
+  let x = (seed*9301+49297)%233280;
+  for(let i=a.length-1;i>0;i--) {
+    x=(x*9301+49297)%233280;
+    const j=Math.floor((x/233280)*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function modeClass(mode) {
+  const m = { 'ind':'ind','subj-pres':'subj-pres','subj-imp':'subj-imp','subj-pp':'subj-pp','subj-plpf':'subj-plpf','inf':'inf' };
+  return m[mode]||'ind';
+}
+
+function renderPage(idx) {
+  const page = PAGES[idx];
+  const state = pageState[idx];
+  const container = document.getElementById('pageContainer');
+
+  // Build content
+  let html = `<div class="panel" id="panel-${idx}">`;
+  html += `<div class="page-header">`;
+  html += `<div class="page-title">${page.title}</div>`;
+  html += `<div class="page-subtitle">${page.subtitle}</div>`;
+  html += `<div class="fill-instr">El verbo en infinitivo aparece entre paréntesis como única pista. Lee el contexto de la oración para decidir el modo y el tiempo correcto.</div>`;
+
+  // legend
+  html += `<div class="legend">`;
+  const modeInfo = [
+    {cls:'ind',    label:'Indicativo',            color:'#25d9ff'},
+    {cls:'subj-pres',  label:'Subj. presente',    color:'#ff4fd8'},
+    {cls:'subj-imp',   label:'Subj. imperfecto',  color:'#a78bfa'},
+    {cls:'subj-pp',    label:'Subj. pres. perf.', color:'#2dd4bf'},
+    {cls:'subj-plpf',  label:'Subj. pluscuamperf.',color:'#f59e0b'},
+    {cls:'inf',        label:'Infinitivo',         color:'#fbbf24'},
+  ];
+  modeInfo.forEach(m => {
+    html += `<span class="leg"><span class="leg-dot" style="background:${m.color}"></span>${m.label}</span>`;
+  });
+  html += `</div></div>`;
+
+  // score bar
+  html += `<div class="score-bar">
+    <div class="sc"><span class="l">Total</span><span class="v" id="fTotal-${idx}">30</span></div>
+    <div class="sc"><span class="l">Correctas</span><span class="v g" id="fOk-${idx}">—</span></div>
+    <div class="sc"><span class="l">Errores</span><span class="v b" id="fErr-${idx}">—</span></div>
+    <div class="prog-w">
+      <div class="prog-l">Progreso: <span id="fPct-${idx}">0%</span></div>
+      <div class="prog-t"><div class="prog-f" id="fProg-${idx}" style="width:0%"></div></div>
+    </div>
+  </div>`;
+
+  // prose
+  html += `<div class="prose" id="prose-${idx}">`;
+  let blankCounter = 0;
+
+  page.paragraphs.forEach(para => {
+    html += `<p>`;
+    const parts = para.split(/(\{\d+\|[^}]+\})/);
+    parts.forEach(part => {
+      const m = part.match(/^\{(\d+)\|([^}]+)\}$/);
+      if(!m) { html += part; return; }
+      const n = parseInt(m[1]);
+      const bIdx = n-1;
+      const [mode, verbDisplay, answer, distractors, ruleKey] = page.blanks[bIdx];
+      const mc = modeClass(mode);
+      const opts = seededShuffle([answer,...distractors], n*37+13);
+
+      html += `<span class="vg ${mc}" id="vg_${idx}_${n}">`;
+      html += `<select id="vs_${idx}_${n}" data-answer="${answer}" data-idx="${idx}" data-n="${n}">`;
+      html += `<option value="">▾ elige</option>`;
+      opts.forEach(o => { html += `<option value="${o}">${o}</option>`; });
+      html += `</select>`;
+      html += `<span class="hlbl">(${verbDisplay})</span>`;
+      html += `<span class="verb-result" id="vr_${idx}_${n}"></span>`;
+      html += `</span>`;
+      blankCounter++;
+    });
+    html += `</p>`;
+  });
+  html += `</div>`;
+
+  // feedback
+  html += `<div class="fill-fb" id="fillFb-${idx}"></div>`;
+
+  // actions
+  html += `<div class="actions">
+    <button class="btn btn-cyan" id="checkBtn-${idx}" onclick="checkFill(${idx})">Revisar todo</button>
+    <button class="btn btn-ghost" onclick="resetFill(${idx})">↺ Reiniciar</button>
+    <button class="btn btn-dark" onclick="hintFill(${idx})">💡 Pista</button>
+  </div>`;
+
+  // chips
+  html += `<div style="margin-top:14px">
+    <div style="font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--muted2);margin-bottom:6px">Formas en esta página</div>
+    <div class="vchips" id="chips-${idx}"></div>
+  </div>`;
+
+  // page nav
+  html += `<div class="page-nav">`;
+  if(idx>0) html += `<button class="btn btn-ghost" onclick="goPage(${idx-1})">← Página anterior</button>`;
+  if(idx<2) html += `<button class="btn btn-next" onclick="goPage(${idx+1})">Página ${idx+2} →</button>`;
+  html += `</div>`;
+
+  html += `</div>`;
+  container.innerHTML = html;
+
+  // add event listeners
+  page.blanks.forEach((_,i) => {
+    const sel = document.getElementById(`vs_${idx}_${i+1}`);
+    if(sel) sel.addEventListener('change', () => { if(!state.checked) updateProgress(idx); });
+  });
+
+  buildChips(idx);
+}
+
+function buildChips(idx) {
+  const page = PAGES[idx];
+  const wrap = document.getElementById(`chips-${idx}`);
+  if(!wrap) return;
+  const seen = {};
+  page.blanks.forEach(([mode, verbDisplay]) => {
+    const key = mode+'_'+verbDisplay;
+    if(seen[key]) return;
+    seen[key] = true;
+    const c = document.createElement('span');
+    c.className = 'vchip '+modeClass(mode);
+    c.textContent = verbDisplay;
+    wrap.appendChild(c);
+  });
+}
+
+function updateProgress(idx) {
+  const page = PAGES[idx];
+  let ans=0, ok=0;
+  page.blanks.forEach((_,i) => {
+    const s = document.getElementById(`vs_${idx}_${i+1}`);
+    if(s && s.value!=='') { ans++; if(s.value===s.dataset.answer) ok++; }
+  });
+  const pct = Math.round(ans/page.blanks.length*100);
+  const el = document.getElementById(`fPct-${idx}`);
+  const pg = document.getElementById(`fProg-${idx}`);
+  if(el) el.textContent = pct+'%';
+  if(pg) pg.style.width = pct+'%';
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CHECK
+══════════════════════════════════════════════════════════════ */
+function checkFill(idx) {
+  const page = PAGES[idx];
+  const state = pageState[idx];
+  state.checked = true;
+  let ok = 0;
+  state.openTip = null;
+
+  page.blanks.forEach(([mode,,answer,,ruleKey], i) => {
+    const n = i+1;
+    const sel = document.getElementById(`vs_${idx}_${n}`);
+    const result = document.getElementById(`vr_${idx}_${n}`);
+    if(!sel||!result) return;
+    const given = sel.value;
+    const isOk = given === answer;
+    if(isOk) ok++;
+
+    sel.style.display = 'none';
+    const vg = document.getElementById(`vg_${idx}_${n}`);
+    vg.querySelectorAll('.hlbl').forEach(e=>e.remove());
+    vg.style.background = isOk ? 'rgba(34,197,94,.08)' : 'rgba(239,68,68,.08)';
+    vg.style.borderColor = isOk ? 'rgba(34,197,94,.3)' : 'rgba(239,68,68,.3)';
+
+    result.innerHTML = '';
+    result.classList.add('show');
+    if(isOk) {
+      result.innerHTML = `<span class="vr-right">${answer}</span><span style="color:#4ade80"> ✓</span>`;
+    } else {
+      result.innerHTML = `<span class="vr-wrong">${given||'—'}</span><span style="color:#f87171"> ✗</span><span class="vr-right"> ${answer}</span>`;
+    }
+
+    // info button
+    const info = document.createElement('span');
+    info.className = 'vr-info';
+    info.textContent = 'i';
+    const tip = document.createElement('span');
+    tip.className = 'vr-tip';
+    tip.innerHTML = `<strong>${page.blanks[i][1]} → ${answer}</strong><br>${getRule(mode, ruleKey)}`;
+    info.appendChild(tip);
+    info.addEventListener('click', e => {
+      e.stopPropagation();
+      if(state.openTip && state.openTip!==info) state.openTip.classList.remove('open');
+      info.classList.toggle('open');
+      state.openTip = info.classList.contains('open') ? info : null;
+    });
+    result.appendChild(document.createTextNode(' '));
+    result.appendChild(info);
+  });
+
+  document.addEventListener('click', () => {
+    if(state.openTip) { state.openTip.classList.remove('open'); state.openTip=null; }
+  });
+
+  const total = page.blanks.length;
+  const pct = Math.round(ok/total*100);
+  document.getElementById(`fOk-${idx}`).textContent = ok;
+  document.getElementById(`fErr-${idx}`).textContent = total-ok;
+  document.getElementById(`fProg-${idx}`).style.width = '100%';
+  document.getElementById(`fPct-${idx}`).textContent = '100%';
+
+  const fb = document.getElementById(`fillFb-${idx}`);
+  fb.classList.add('show');
+  if(pct===100)       { fb.className='fill-fb show good';    fb.innerHTML=`🏆 <strong>¡Perfecto! ${ok}/${total}.</strong> Dominas todos los tiempos del subjuntivo. ¡Impresionante nivel B2!`; }
+  else if(pct>=70)    { fb.className='fill-fb show partial';  fb.innerHTML=`👍 <strong>${ok}/${total} (${pct}%).</strong> Muy bien. Haz clic en <strong>i</strong> para revisar cada error y entender la regla.`; }
+  else if(pct>=45)    { fb.className='fill-fb show partial';  fb.innerHTML=`📖 <strong>${ok}/${total} (${pct}%).</strong> Repasa especialmente el subjuntivo imperfecto y el pluscuamperfecto. El contexto temporal es la clave.`; }
+  else                { fb.className='fill-fb show bad';      fb.innerHTML=`💪 <strong>${ok}/${total} (${pct}%).</strong> Empieza con la regla básica: verbo principal en pasado o condicional → subjuntivo imperfecto; haya/hubiera + participio para acciones completadas.`; }
+
+  document.getElementById(`checkBtn-${idx}`).disabled = true;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESET / HINT
+══════════════════════════════════════════════════════════════ */
+function resetFill(idx) {
+  pageState[idx] = {checked:false, openTip:null};
+  renderPage(idx);
+}
+
+function hintFill(idx) {
+  if(pageState[idx].checked) return;
+  const page = PAGES[idx];
+  const empty = page.blanks.map((_,i)=>i).filter(i => {
+    const s = document.getElementById(`vs_${idx}_${i+1}`);
+    return s && s.value==='';
+  });
+  if(!empty.length) return;
+  const i = empty[0];
+  const sel = document.getElementById(`vs_${idx}_${i+1}`);
+  sel.value = getAnswer(page, i);
+  sel.style.borderColor = 'rgba(245,158,11,.6)';
+  sel.style.color = '#fcd34d';
+  sel.scrollIntoView({behavior:'smooth',block:'center'});
+  updateProgress(idx);
+}
+
+/* INIT */
+goPage(0);
+</script>
+</body>
+</html>
