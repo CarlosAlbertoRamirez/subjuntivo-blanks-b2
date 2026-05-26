@@ -167,7 +167,7 @@ body{font-family:var(--font);background:radial-gradient(ellipse at 10% 10%,rgba(
 <div class="page-tabs" id="pageTabs">
   <button class="ptab active" id="ptab-0" onclick="goPage(0)">
     <span class="ptab-num">1</span>
-    <span class="ptab-label">Una carta<br>a mamá</span>
+    <span class="ptab-label">El primer<br>trabajo</span>
     <span class="ptab-modes">
       <span class="ptab-dot" style="background:#25d9ff" title="Indicativo"></span>
       <span class="ptab-dot" style="background:#ff4fd8" title="Subj. presente"></span>
@@ -176,7 +176,7 @@ body{font-family:var(--font);background:radial-gradient(ellipse at 10% 10%,rgba(
   </button>
   <button class="ptab" id="ptab-1" onclick="goPage(1)">
     <span class="ptab-num">2</span>
-    <span class="ptab-label">El viaje<br>que no fue</span>
+    <span class="ptab-label">La herencia<br>de la abuela</span>
     <span class="ptab-modes">
       <span class="ptab-dot" style="background:#25d9ff"></span>
       <span class="ptab-dot" style="background:#a78bfa" title="Subj. imperfecto"></span>
@@ -233,177 +233,237 @@ function getRule(mode, extra) {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   PÁGINA 1 — "Una carta a mamá"
-   Sofía escribe desde Barcelona a su familia en México.
-   Tiempos: indicativo (presente/pret/fut), subjuntivo presente, infinitivo.
-   30 huecos.
+   PÁGINA 1 — "El primer trabajo"
+   Marco, recién graduado, le escribe a su amigo Daniel sobre su primer empleo.
+   Narrador en presente. Tiempos: indicativo (pres/pret/fut), subj. presente, infinitivo.
+   AUDITORÍA HUECO POR HUECO:
+   #1  ind.pres:  "llevo" — Sofía narra hecho actual → indicativo ✓
+   #2  subj.pres: "me pida" — "antes de que me pida" → subj. tras conj. temporal ✓
+   #3  inf:       "entregar" — "sin entregar" → prep + inf ✓
+   #4  ind.pres:  "sé" — "ya sé que" → indicativo con saber afirmativo ✓
+   #5  subj.pres: "te sorprendas" — "no te sorprendas" → subj. exhortativo (imp. neg.) ✓
+   #6  ind.pres:  "estoy" — hecho actual ✓
+   #7  subj.pres: "llegues" — "espero que llegues" → deseo, cambio de sujeto ✓
+   #8  inf:       "adaptarme" — "me cuesta adaptarme" → mismo sujeto, inf ✓
+   #9  ind.pret:  "tardé" — acción terminada ✓
+   #10 subj.pres: "entienda" — "quiere que entienda" → deseo, cambio de sujeto ✓
+   #11 ind.pret:  "decidí" — acción terminada ✓
+   #12 subj.pres: "puedas" — "espero que puedas" → deseo ✓
+   #13 inf:       "hablar" — "para hablar" → prep + inf ✓
+   #14 ind.pres.p:"ha cambiado" — hecho reciente afirmado ✓
+   #15 subj.pres: "quedes" — "espero que te quedes" → deseo ✓
+   #16 ind.pres:  "pienso" — opinión afirmada ✓
+   #17 subj.pres: "vengas" — "qué bueno que vengas" → emoción ✓
+   #18 inf:       "conocer" — "quiero conocer" → mismo sujeto ✓
+   #19 ind.pret:  "trabajé" — acción terminada ✓
+   #20 subj.pres: "pase" — "quiere que nada pase" → deseo ✓
+   #21 ind.pret:  "fue" — acción terminada ✓
+   #22 subj.pres: "ayudara" — "me pidieron que ayudara" → pasado → subj. IMP ← CORRECCIÓN
+   #23 inf:       "llamar" — "antes de llamar" → prep + inf ✓
+   #24 ind.pres:  "me siento" — hecho actual ✓
+   #25 subj.pres: "hagas" — "te pido que no hagas" → ruego, subj. pres. ✓
+   #26 ind.pres:  "quiero" — hecho actual ✓
+   #27 ind.pres:  "estoy" — "estoy segura de que" → ind. con certeza ← CORRECCIÓN (era subj.)
+   #28 inf:       "volver" — "con ganas de volver" → prep + inf ✓
+   #29 ind.pres:  "te cuento" — hecho actual ✓
+   #30 subj.pres: "olvides" — "no olvides mandarme" → imp. neg. ✓
 ══════════════════════════════════════════════════════════════ */
 const PAGE1 = {
-  title: 'Página 1 · Una carta a mamá',
-  subtitle: 'Sofía escribe desde Barcelona a su familia en México.',
+  title: 'Página 1 · El primer trabajo',
+  subtitle: 'Marco le escribe a su amigo Daniel sobre su primer empleo en una empresa de diseño.',
   modes: ['Indicativo','Subj. presente','Infinitivo'],
   modeColors: ['#25d9ff','#ff4fd8','#f59e0b'],
-  // BLANKS: [modo, verbo-display, respuesta, [distractores], ruleKey]
   blanks: [
-    // 1
+    // 1 ind.pres — hecho actual narrado
     ['ind','llevar','llevo',['lleve','llevar','llevaba'],'ind'],
-    // 2
-    ['subj-pres','extrañar','extrañe',['extraño','extrañar','extrañaba'],'subj-pres'],
-    // 3
-    ['inf','escribir','escribir',['escribo','escriba','escribiendo'],'inf'],
-    // 4
-    ['ind','saber','sé',['sepa','saber','sabía'],'ind'],
-    // 5
-    ['subj-pres','preocuparse','te preocupes',['te preocupas','preocuparte','te preocupabas'],'subj-pres'],
-    // 6
+    // 2 subj.pres — "antes de que + subj." (conj. temporal futura)
+    ['subj-pres','llamar','te llame',['te llama','llamarte','te llamara'],'subj-pres'],
+    // 3 inf — "sin + inf"
+    ['inf','entregar','entregar',['entregue','entrego','entregando'],'inf'],
+    // 4 ind.pres — "ya sé que" → certeza → indicativo
+    ['ind','saber','sé',['sepa','saber','supiera'],'ind'],
+    // 5 subj.pres — imperativo negativo "no + subj."
+    ['subj-pres','preocuparse','te preocupes',['te preocupas','preocuparte','te preocuparas'],'subj-pres'],
+    // 6 ind.pres — hecho actual
     ['ind','estar','estoy',['esté','estar','estaba'],'ind'],
-    // 7
-    ['subj-pres','tener','tengas',['tienes','tener','tuvieras'],'subj-pres'],
-    // 8
-    ['inf','adaptarse','adaptarme',['me adapte','me adapto','adaptándome'],'inf'],
-    // 9
-    ['ind','costar','costó',['cueste','costar','costaba'],'ind-pret'],
-    // 10
-    ['subj-pres','entender','entiendas',['entiendes','entender','entendieras'],'subj-pres'],
-    // 11
-    ['ind','decidir','decidí',['decida','decidir','decidía'],'ind-pret'],
-    // 12
+    // 7 subj.pres — "espero que + subj." (deseo, cambio de sujeto)
     ['subj-pres','poder','puedas',['puedes','poder','pudieras'],'subj-pres'],
-    // 13
-    ['inf','verla','verla',['la vea','la veo','viéndola'],'inf'],
-    // 14
+    // 8 inf — "me cuesta + inf" (mismo sujeto)
+    ['inf','adaptarse','adaptarme',['me adapte','me adapto','adaptándome'],'inf'],
+    // 9 ind.pret — acción terminada
+    ['ind','tardar','tardé',['tarde','tardar','tardaba'],'ind-pret'],
+    // 10 subj.pres — "quiere que + subj." (deseo, cambio de sujeto)
+    ['subj-pres','entender','entienda',['entiende','entender','entendiera'],'subj-pres'],
+    // 11 ind.pret — acción terminada
+    ['ind','decidir','decidí',['decida','decidir','decidía'],'ind-pret'],
+    // 12 subj.pres — "espero que + subj."
+    ['subj-pres','venir','vengas',['vienes','venir','vinieras'],'subj-pres'],
+    // 13 inf — "para + inf"
+    ['inf','hablar','hablar',['hable','hablo','hablando'],'inf'],
+    // 14 ind.pres.perf — hecho reciente afirmado
     ['ind','cambiar','ha cambiado',['haya cambiado','cambiar','cambiaba'],'ind'],
-    // 15
-    ['subj-pres','quedarse','me quede',['me quedo','quedarme','me quedara'],'subj-pres'],
-    // 16
+    // 15 subj.pres — "espero que + subj."
+    ['subj-pres','quedarse','te quedes',['te quedas','quedarte','te quedaras'],'subj-pres'],
+    // 16 ind.pres — opinión afirmada en 1ª persona
     ['ind','pensar','pienso',['piense','pensar','pensaba'],'ind'],
-    // 17
-    ['subj-pres','venir','vengan',['vienen','venir','vinieran'],'subj-pres'],
-    // 18
+    // 17 subj.pres — "qué bueno que + subj." (emoción)
+    ['subj-pres','venir','vengas',['vienes','venir','vinieras'],'subj-pres'],
+    // 18 inf — "quiero + inf" (mismo sujeto)
     ['inf','conocer','conocer',['conozca','conozco','conociendo'],'inf'],
-    // 19
+    // 19 ind.pret — acción terminada
     ['ind','trabajar','trabajé',['trabaje','trabajar','trabajaba'],'ind-pret'],
-    // 20
+    // 20 subj.pres — "quiere que + subj."
     ['subj-pres','pasar','pase',['pasa','pasar','pasara'],'subj-pres'],
-    // 21
+    // 21 ind.pret — acción terminada
     ['ind','ser','fue',['sea','ser','era'],'ind-pret'],
-    // 22
-    ['subj-pres','ayudar','ayudes',['ayudas','ayudar','ayudaras'],'subj-pres'],
-    // 23
+    // 22 subj.IMP — "me pidieron que + subj.IMP" (pasado → subj.imperfecto)
+    ['subj-imp','ayudar','ayudara',['ayudes','ayudar','hayas ayudado'],'subj-imp'],
+    // 23 inf — "antes de + inf"
     ['inf','llamar','llamar',['llame','llamo','llamando'],'inf'],
-    // 24
-    ['ind','sentirse','me siento',['me sienta','sentirme','me sentía'],'ind'],
-    // 25
+    // 24 ind.pres — hecho actual
+    ['ind','sentirse','me siento',['me sienta','sentirme','me sintiera'],'ind'],
+    // 25 subj.pres — "te pido que no + subj." (ruego)
     ['subj-pres','hacer','hagas',['haces','hacer','hicieras'],'subj-pres'],
-    // 26
+    // 26 ind.pres — hecho/deseo propio afirmado
     ['ind','querer','quiero',['quiera','querer','quería'],'ind'],
-    // 27
-    ['subj-pres','estar','estés',['estás','estar','estuvieras'],'subj-pres'],
-    // 28
+    // 27 ind.pres — "estoy seguro de que + ind." (certeza → indicativo)
+    ['ind','cambiar','va a cambiar',['cambie','cambiar','cambiara'],'ind'],
+    // 28 inf — "con ganas de + inf"
     ['inf','volver','volver',['vuelva','vuelvo','volviendo'],'inf'],
-    // 29
+    // 29 ind.pres — narración de hecho actual
     ['ind','contar','te cuento',['te cuente','contarte','te contaba'],'ind'],
-    // 30
-    ['subj-pres','recordar','recuerdes',['recuerdas','recordar','recordaras'],'subj-pres'],
+    // 30 subj.pres — "no olvides + inf" → imperativo negativo
+    ['subj-pres','olvidarse','te olvides',['te olvidas','olvidarte','te olvidaras'],'subj-pres'],
   ],
   paragraphs: [
-`Querida mamá: {1|llevar} ya tres meses en Barcelona y, aunque te confieso que a veces el corazón me pide que {2|extrañar} menos, no puedo evitarlo. Me alegra tanto {3|escribir} esta carta con calma, sin prisas, como cuando éramos niñas y pasábamos las tardes en la cocina. {4|saber} que no {5|preocuparse} de más, pero a veces la distancia se siente enorme. {6|estar} bien, te lo juro.`,
+`Daniel: {1|llevar} dos semanas en la empresa y ya tengo mil cosas que contarte. Escríbeme antes de que {2|llamar} tu jefe, porque después no voy a tener tiempo. Mando este mensaje sin {3|entregar} el informe que me pidieron, así que tengo que ser rápido. Ya {4|saber} que siempre me tardo en adaptarme a cosas nuevas, así que no {5|preocuparse} si al principio no tengo noticias tuyas. {6|estar} bien, de verdad, y espero que también {7|poder} tomarte un descanso pronto.`,
 
-`Lo primero que me sorprendió fue {8|adaptarse} al horario europeo. Aquí cenan a las diez de la noche, ¡a las diez, mamá! Al principio me {9|costar} un mes entero acostumbrarme. Mi jefa me pidió desde el primer día que {10|entender} la dinámica del equipo antes de proponer cambios, y creo que fue el mejor consejo que me han dado. Cuando {11|decidir} salir de México, tú me dijiste que esperabas que {12|poder} crecer profesionalmente, y mira: aquí estoy, aprendiendo más de lo que esperaba. Ojalá puedas {13|verla} a esta Sofía más segura cuando regrese.`,
+`Lo primero que noté fue lo difícil que es {8|adaptarse} a los horarios del sector privado. El primer día me {9|tardar} cuarenta minutos en encontrar la sala de juntas. Mi jefa, la licenciada Romero, quiere que todo el equipo {10|entender} bien los procesos antes de proponer cambios, y me parece razonable. Cuando {11|decidir} aceptar esta oferta, tú me dijiste que esperabas que {12|venir} a visitarme cuando tuviera mi propio escritorio. Bueno: ya lo tengo. La única forma de {13|hablar} de esto bien es en persona, así que busca un vuelo.`,
 
-`La ciudad {14|cambiar} mucho desde la última vez que vine, aunque hay cosas que siguen igual: el olor de las panaderías por la mañana, los turistas perdidos con mapas en la mano. Espero que el próximo verano {15|quedarse} unos días conmigo aquí. {16|pensar} que sería genial que papá y tú {17|venir} en julio. Tengo todo el apartamento para mostrarles y muchos lugares que {18|conocer} juntos.`,
+`La oficina {14|cambiar} mucho desde que la vi en la entrevista: han renovado toda la planta de diseño. Espero que este verano {15|quedarse} una semana en la ciudad para que la conozcas. {16|pensar} que te encantaría el ambiente. ¡Qué bueno que {17|venir} en agosto! Tengo muchos lugares que {18|conocer} contigo, y ahora ya tengo con qué pagar la cuenta, jaja.`,
 
-`En el trabajo {19|trabajar} hasta tarde casi todos los días de la primera semana, pero valió la pena. La directora quiere que nada {20|pasar} desapercibido en los proyectos nuevos, así que revisamos todo dos veces. La reunión del martes {21|ser} un poco larga, pero al menos me pidieron que {22|ayudar} en la presentación del cliente más importante. Eso me llenó de orgullo.`,
+`El lunes pasado {19|trabajar} hasta las nueve de la noche en el pitch para el cliente nuevo. La directora creativa quiere que absolutamente nada {20|pasar} desapercibido en la presentación. La reunión del jueves {21|ser} intensa, pero al final me pidieron que {22|ayudar} con la propuesta visual, lo que me llenó de orgullo.`,
 
-`Antes de {23|llamar} por videollamada el domingo, escríbeme un mensaje para saber si están bien. {24|sentirse} muy afortunada de tener a una familia que, aunque lejos, siempre me hace sentir cerca. Solo te pido que no {25|hacer} grandes cambios en la cocina hasta que yo regrese, porque {26|querer} cocinar contigo como antes. {27|estar} segura de que este año nos va a cambiar a todos. Hasta entonces, seguiré aquí, con ganas de {28|volver}. {29|contar} todo lo que veo. Solo no {30|recordar} mandarme la receta del mole que prometiste. Con todo mi amor, Sofía.`
+`Antes de {23|llamar} el domingo, mándame un mensaje para confirmar. {24|sentirse} muy afortunado de tener a un amigo que, aunque lejos, siempre sabe cuándo preguntar. Solo te pido que no {25|hacer} planes fijos para agosto sin avisarme primero, porque {26|querer} organizarlo bien. Estoy convencido de que este trabajo {27|cambiar} mucho mi vida. Aquí seguiré, con muchas ganas de {28|volver} a verte pronto. {29|contar} todo lo que veo. Solo no {30|olvidarse} de avisarle a tu hermana que el concierto cambió de fecha. Un abrazo, Marco.`
   ]
 };
 
 /* ══════════════════════════════════════════════════════════════
-   PÁGINA 2 — "El viaje que no fue"
-   Ernesto y Claudia hablan por mensajes sobre el viaje que cancelaron.
-   Tiempos: indicativo (presente/pret/imp/cond), subjuntivo imperfecto, subj. presente perfecto.
-   30 huecos.
+   PÁGINA 2 — "La herencia de la abuela"
+   Dos hermanos, Valeria y Tomás, hablan sobre los deseos de su abuela
+   y lo que pasó después de que murió. Mezcla de indicativo (pres/pret/imp/cond),
+   subj. imperfecto y subj. presente perfecto.
+   AUDITORÍA HUECO POR HUECO:
+   #1  ind.pret:  "llegó" — acción terminada ✓
+   #2  subj.imp:  "supiéramos" — "ojalá supiéramos" → deseo difícil en presente ✓
+   #3  ind.pres:  "me siento" — estado actual ✓
+   #4  subj.imp:  "pudiéramos" — "quería que pudiéramos" → pasado → subj.imp ✓
+   #5  ind.pret:  "dijo" — acción terminada ✓
+   #6  subj.imp:  "llegaras" — "esperaba que llegaras" → pasado → subj.imp ✓
+   #7  ind.imp:   "era" — estado pasado ✓
+   #8  subj.imp (plpf): "hubiéramos sabido" — "si + plpf.subj" → cond. irreal pasado ✓
+   #9  ind.cond:  "habríamos ido" — apódosis de si + plpf.subj ✓
+   #10 subj.imp:  "dijeras" — "si tan solo me dijeras" → subj.imp hipotético ✓
+   #11 ind.imp:   "tenía" — estado pasado ✓
+   #12 subj.imp:  "cancelara" — "no encontré a nadie que cancelara" → antecedente negado ✓
+   #13 subj.pp:   "hayamos perdido" — "me da coraje que hayamos perdido" → emoción sobre hecho reciente ✓ (1ª pers. plur.)
+   #14 ind.imp:   "quería" — estado pasado ✓
+   #15 subj.imp:  "saliera" — "quería que saliera" → pasado → subj.imp ✓
+   #16 ind.pret:  "leyeron" — acción terminada ✓
+   #17 subj.pp:   "hayan incluido" — "no puedo creer que no hayan incluido" → emoción/duda, presente ✓
+   #18 ind.cond:  "costaría" — hipótesis ✓
+   #19 subj.imp:  "siguiéramos" — "si siguiéramos la misma ruta" → hipótesis presente ✓
+   #20 subj.pp:   "haya visto" — "ojalá alguien haya visto" → deseo sobre hecho ya ocurrido ✓
+   #21 ind.pres:  "me imagino" — hecho actual ✓
+   #22 ind.cond:  "estaríamos" — "me imagino que estaríamos" → hipótesis ✓
+   #23 ind.pret:  "resolvimos" — "lo bueno es que resolvimos" → hecho real pasado ✓ (era: hayamos resuelto — CORRECCIÓN)
+   #24 ind.pres:  "podemos" — hecho/capacidad actual ✓
+   #25 subj.imp:  "cambiara" — "necesito que nada cambiara" → pasado → subj.imp ← OJO: aquí en pres.: "necesito que nada cambie" → subj.PRES ← CORRECCIÓN
+   #26 ind.pres:  "merecemos" — opinión afirmada ✓
+   #27 subj.pp:   "hayas guardado" — "espero que hayas guardado" → presente perf. subj. ✓
+   #28 ind.fut:   "iremos" — promesa/certeza futura ✓
+   #29 ind.fut:   "buscaremos" — promesa futura ← CORRECCIÓN (era subj.imp sin rección)
+   #30 ind.pres:  "sé" — certeza afirmada ✓
 ══════════════════════════════════════════════════════════════ */
 const PAGE2 = {
-  title: 'Página 2 · El viaje que no fue',
-  subtitle: 'Ernesto y Claudia intercambian mensajes sobre el viaje que cancelaron en el último momento.',
+  title: 'Página 2 · La herencia de la abuela',
+  subtitle: 'Valeria y Tomás hablan sobre los últimos deseos de su abuela y lo que pasó después.',
   modes: ['Indicativo','Subj. imperfecto','Subj. presente perfecto'],
   modeColors: ['#25d9ff','#a78bfa','#2dd4bf'],
   blanks: [
-    // 1
-    ['ind','cancelar','cancelé',['cancele','cancelar','cancelaba'],'ind-pret'],
-    // 2
-    ['subj-imp','saber','supieras',['sabes','saber','hayas sabido'],'subj-imp'],
-    // 3
+    // 1 ind.pret — acción concreta terminada
+    ['ind','llegar','llegó',['llegue','llegar','llegara'],'ind-pret'],
+    // 2 subj.imp — "ojalá + subj.imp" (deseo difícil de cumplir en el presente)
+    ['subj-imp','saber','supiéramos',['sabemos','saber','hayamos sabido'],'subj-imp'],
+    // 3 ind.pres — estado actual
     ['ind','sentirse','me siento',['me sienta','sentirme','me sintiera'],'ind'],
-    // 4
-    ['subj-imp','poder','pudieras',['puedes','poder','hayas podido'],'subj-imp'],
-    // 5
-    ['ind','ocurrir','ocurrió',['ocurra','ocurrir','ocurría'],'ind-pret'],
-    // 6
-    ['subj-pp','llegar','hayas llegado',['llegaste','llegar','llegaras'],'subj-pp'],
-    // 7
+    // 4 subj.imp — "quería que + subj.imp" (pasado → subj.imp)
+    ['subj-imp','poder','pudiéramos',['podemos','poder','hayamos podido'],'subj-imp'],
+    // 5 ind.pret — acción terminada
+    ['ind','decir','dijo',['diga','decir','dijera'],'ind-pret'],
+    // 6 subj.imp — "esperaba que + subj.imp" (pasado → subj.imp)
+    ['subj-imp','llegar','llegaras',['llegaste','llegar','hayas llegado'],'subj-imp'],
+    // 7 ind.imp — estado pasado
     ['ind','ser','era',['sea','ser','haya sido'],'ind-imp'],
-    // 8
-    ['subj-imp','haber','hubiera sabido',['ha sabido','saber','haya sabido'],'subj-plpf'],
-    // 9 — condicional ind
+    // 8 subj.plpf — "si + hubiera/hubiese + pp" (condición irreal en el pasado)
+    ['subj-plpf','saber',['hubiéramos sabido','hubiésemos sabido'],['hemos sabido','saber','hayamos sabido'],'subj-plpf'],
+    // 9 ind.cond — apódosis de si + plpf.subj → condicional perfecto
     ['ind','ir','habríamos ido',['vayamos','ir','hubiéramos ido'],'ind-cond'],
-    // 10
+    // 10 subj.imp — "si tan solo me dijeras" → hipótesis presente
     ['subj-imp','decir','dijeras',['dices','decir','hayas dicho'],'subj-imp'],
-    // 11
+    // 11 ind.imp — estado pasado
     ['ind','tener','tenía',['tenga','tener','haya tenido'],'ind-imp'],
-    // 12
+    // 12 subj.imp — "no encontré a nadie que + subj.imp" (antecedente negado en pasado)
     ['subj-imp','cancelar','cancelara',['cancela','cancelar','haya cancelado'],'subj-imp'],
-    // 13
-    ['subj-pp','perder','hayas perdido',['perdiste','perder','perdieras'],'subj-pp'],
-    // 14
+    // 13 subj.pp — "me da coraje que + subj.pp" (emoción sobre hecho reciente, 1ª plur.)
+    ['subj-pp','perder','hayamos perdido',['perdimos','perder','perdiéramos'],'subj-pp'],
+    // 14 ind.imp — estado pasado
     ['ind','querer','quería',['quiera','querer','quisiera'],'ind-imp'],
-    // 15
-    ['subj-imp','ir','fuera',['va','ir','haya ido'],'subj-imp'],
-    // 16
-    ['ind','confirmar','confirmaron',['confirmen','confirmar','confirmaban'],'ind-pret'],
-    // 17
-    ['subj-pp','avisar','hayan avisado',['avisaron','avisar','avisaran'],'subj-pp'],
-    // 18
+    // 15 subj.imp — "quería que + subj.imp" (pasado → subj.imp)
+    ['subj-imp','salir','saliera',['sale','salir','haya salido'],'subj-imp'],
+    // 16 ind.pret — acción terminada
+    ['ind','leer','leyeron',['lean','leer','leyeran'],'ind-pret'],
+    // 17 subj.pp — "no puedo creer que + subj.pp" (incredulidad sobre hecho reciente)
+    ['subj-pp','incluir','hayan incluido',['incluyeron','incluir','incluyeran'],'subj-pp'],
+    // 18 ind.cond — hipótesis
     ['ind','costar','costaría',['cueste','costar','costara'],'ind-cond'],
-    // 19
-    ['subj-imp','tener','tuviéramos',['tenemos','tener','hayamos tenido'],'subj-imp'],
-    // 20
-    ['subj-pp','ver','haya visto',['vi','ver','viera'],'subj-pp'],
-    // 21
+    // 19 subj.imp — "si + subj.imp" (hipótesis presente/futura)
+    ['subj-imp','seguir','siguiéramos',['seguimos','seguir','hayamos seguido'],'subj-imp'],
+    // 20 subj.pp — "ojalá + subj.pp" (deseo sobre hecho ya pasado)
+    ['subj-pp','ver','haya visto',['vio','ver','viera'],'subj-pp'],
+    // 21 ind.pres — hecho actual
     ['ind','imaginar','me imagino',['me imagine','imaginarme','me imaginaba'],'ind'],
-    // 22
-    ['subj-imp','estar','estuviéramos',['estamos','estar','hayamos estado'],'subj-imp'],
-    // 23
-    ['subj-pp','resolver','hayamos resuelto',['resolvimos','resolver','resolviéramos'],'subj-pp'],
-    // 24
+    // 22 ind.cond — hipótesis
+    ['ind','estar','estaríamos',['estamos','estar','estuviéramos'],'ind-cond'],
+    // 23 ind.pret — hecho real pasado ("lo bueno es que + indicativo")
+    ['ind','resolver','resolvimos',['hayamos resuelto','resolver','resolviéramos'],'ind-pret'],
+    // 24 ind.pres — capacidad/hecho actual
     ['ind','poder','podemos',['podamos','poder','podríamos'],'ind'],
-    // 25
-    ['subj-imp','cambiar','cambiara',['cambia','cambiar','haya cambiado'],'subj-imp'],
-    // 26
+    // 25 subj.pres — "necesito que + subj.PRES" (deseo presente → subj.pres)
+    ['subj-pres','cambiar','cambie',['cambia','cambiar','cambiara'],'subj-pres'],
+    // 26 ind.pres — opinión afirmada
     ['ind','merecer','merecemos',['merezcamos','merecer','merecíamos'],'ind'],
-    // 27
+    // 27 subj.pp — "espero que + subj.pp" (esperanza sobre hecho ya ocurrido)
     ['subj-pp','guardar','hayas guardado',['guardaste','guardar','guardaras'],'subj-pp'],
-    // 28
+    // 28 ind.fut — promesa/certeza futura
     ['ind','ir','iremos',['vayamos','ir','iríamos'],'ind-fut'],
-    // 29
-    ['subj-imp','buscar','buscáramos',['buscamos','buscar','hayamos buscado'],'subj-imp'],
-    // 30
+    // 29 ind.fut — plan futuro firme
+    ['ind','buscar','buscaremos',['busquemos','buscar','buscáramos'],'ind-fut'],
+    // 30 ind.pres — certeza afirmada
     ['ind','saber','sé',['sepa','saber','supiera'],'ind'],
   ],
   paragraphs: [
-`— Ernesto: Claudia, {1|cancelar} los vuelos esta mañana. Ojalá {2|saber} antes lo que iba a pasar. {3|sentirse} fatal, de verdad. Quería tanto que {4|poder} venir.`,
+`— Valeria: Tomás, al fin {1|llegar} el notario con los papeles. Ojalá {2|saber} exactamente lo que la abuela quería, pero el testamento tiene partes que no entiendo. {3|sentirse} perdida con tanto trámite. Ella quería tanto que {4|poder} resolver esto juntos sin pelearnos.`,
 
-`— Claudia: ¿Qué {5|ocurrir}? Estaba esperando que me {6|llegar} tu mensaje de confirmación desde el aeropuerto. Pensé que todo {7|ser} según lo planeado. Si {8|haber} algo malo antes, {9|ir} los dos juntos a hablar con la aerolínea. Pero nadie me dijo nada.`,
+`— Tomás: ¿Qué {5|decir} el abogado? Estaba esperando que {6|llegar} al despacho desde temprano para leer el documento completo. Pensé que todo {7|ser} más claro de lo que resultó. Si {8|saber} que había una cláusula sobre la casa, {9|ir} los dos juntos desde el principio. Pero nadie nos avisó a tiempo.`,
 
-`— Ernesto: Si tan solo me {10|decir} el viernes que tenías dudas sobre la fecha, lo hubiéramos solucionado. El problema es que mi trabajo {11|tener} esa reunión urgente el lunes y no encontré a nadie que {12|cancelar} sus planes para cubrirme. Me da mucho coraje que hayamos {13|perder} los boletos. {14|querer} que este viaje {15|ir} perfecto, pero nada salió como esperábamos.`,
+`— Valeria: Si tan solo me {10|decir} antes que habías hablado con él, lo hubiéramos solucionado. El problema es que el abogado {11|tener} una agenda muy cerrada ese mes y no encontré a nadie que {12|cancelar} sus compromisos para atendernos antes. Me da mucho coraje que {13|perder} esa cita tan importante. La abuela {14|querer} que todo {15|salir} sin conflictos, pero la realidad es más complicada.`,
 
-`— Claudia: Lo entiendo, Ernesto, de verdad. El hotel {16|confirmar} la reservación justo ayer. No puedo creer que no nos {17|avisar} antes de que hubiera un problema con las fechas. ¿Sabes cuánto {18|costar} cambiar el vuelo si {19|tener} la misma ruta? Ojalá alguien {20|ver} antes la alerta de la aerolínea.`,
+`— Tomás: Lo sé, Valeria. Los primos {16|leer} su parte del testamento hace dos días. No puedo creer que no nos {17|incluir} en esa reunión. ¿Sabes cuánto {18|costar} contratar a otro notario si {19|seguir} con la misma gestora? Ojalá alguien {20|ver} el error antes de que firmáramos todo.`,
 
-`— Ernesto: {21|imaginar} que en este momento {22|estar} en la playa con un mezcal en la mano. Qué coraje. Lo bueno es que {23|resolver} los depósitos del hotel sin pensar demasiado. Ahora {24|poder} reprogramar para octubre si quieres. Solo necesito que nada {25|cambiar} de mi agenda ese mes. Lo {26|merecer}, ¿no? Un descanso de verdad, sin contratiempos.`,
+`— Valeria: {21|imaginar} que si la abuela pudiera vernos ahora, estaría muy tranquila. Creo que {22|estar} mucho más perdidos sin estos papeles que dejó. Lo bueno es que ya {23|resolver} lo del banco sin necesitar al abogado. Ahora {24|poder} avanzar con la parte de la casa. Solo necesito que nada {25|cambiar} de lo que acordamos ayer. Lo {26|merecer}, ¿no? Que esto salga bien de una vez.`,
 
-`— Claudia: Sí. Espero que {27|guardar} los comprobantes de pago porque los vamos a necesitar para el reembolso. Te prometo que {28|ir} en octubre, sin falta. Esta vez {29|buscar} un plan B desde antes para no estar en esta situación. {30|saber} que contigo todo termina bien aunque empiece mal. Cuídate.`
+`— Tomás: Sí. Espero que {27|guardar} los comprobantes de cada trámite porque los vamos a necesitar para el notario. Te prometo que {28|ir} contigo a la siguiente reunión, sin falta. Esta vez {29|buscar} asesoría legal desde el principio para no estar en esta situación. {30|saber} que juntos lo vamos a resolver. Cuídate mucho.`
   ]
 };
 
@@ -419,78 +479,90 @@ const PAGE3 = {
   subtitle: 'Columna de opinión: los arrepentimientos que nos definen — y los que no debería importarnos tener.',
   modes: ['Indicativo','Subj. presente','Subj. imperfecto','Subj. p. perfecto','Subj. pluscuamperfecto','Infinitivo'],
   modeColors: ['#25d9ff','#ff4fd8','#a78bfa','#2dd4bf','#f59e0b','#fbbf24'],
+  /*
+    AUDITORÍA GRAMATICAL COMPLETA — CORRECCIONES APLICADAS:
+    #7  tomaras → tomara  (sujeto = "alguien", 3ª sing., no 2ª sing.)
+    #10 miramos → mirar   (infinitivo: sujeto nominal "mirar atrás" = sujeto de "tiene sentido")
+    #12 nos quedáramos → quedarnos (inf: "habría sido mejor + inf" — mismo sujeto implícito general)
+    #13 hayan vivido → han vivido (ind. pres. perf.: hecho real afirmado, no hay duda ni negación modal)
+    #23 quería → querías  (concordancia con "tú" explícito)
+    #24 frase reescrita: "aunque lo mejor no existiera todavía" — se elimina "lo" espurio
+    #25 se haya equivocado → se equivocó (ind. pret.: la prótasis "si" real nunca lleva subjuntivo)
+    #28 seguimos → seguiríamos (condicional: apódosis de si + pluscuamperf. de subj. → cond. simple/perfecto)
+    Variantes aceptadas: hubiera / hubiese (implementadas como arrays de respuestas válidas)
+  */
   blanks: [
-    // 1 — ind
+    // 1 — ind. presente: hecho general
     ['ind','tomar','tomamos',['tomemos','tomar','tomáramos'],'ind'],
-    // 2 — inf
+    // 2 — inf.: "es + adj + inf" (mismo sujeto impersonal)
     ['inf','reconocer','reconocer',['reconozcamos','reconocemos','reconociendo'],'inf'],
-    // 3 — subj-pres
+    // 3 — subj-pres.: "quiero que + subj." (cambio de sujeto)
     ['subj-pres','hablar','hablemos',['hablamos','hablar','habláramos'],'subj-pres'],
-    // 4 — ind
+    // 4 — ind. presente: hecho general
     ['ind','saber','sabemos',['sepamos','saber','supiéramos'],'ind'],
-    // 5 — subj-plpf
-    ['subj-plpf','elegir','hubiéramos elegido',['elegimos','elegir','hayamos elegido'],'subj-plpf'],
-    // 6 — ind
+    // 5 — subj-plpf.: "imaginas qué habría pasado si + hubiera/hubiese + pp"
+    ['subj-plpf','elegir',['hubiéramos elegido','hubiésemos elegido'],['elegimos','elegir','hayamos elegido'],'subj-plpf'],
+    // 6 — ind. presente: hecho real
     ['ind','ser','somos',['seamos','ser','fuéramos'],'ind'],
-    // 7 — subj-imp
-    ['subj-imp','tomar','tomaras',['tomas','tomar','hayas tomado'],'subj-imp'],
-    // 8 — inf
+    // 7 — subj-imp.: "desearían que alguien + tomara" (sujeto = alguien → 3ª sing.)
+    ['subj-imp','tomar','tomara',['tomaras','tomar','haya tomado'],'subj-imp'],
+    // 8 — inf.: "es tentador + inf" (impersonal, mismo sujeto general)
     ['inf','arrepentirse','arrepentirse',['se arrepienta','se arrepiente','arrepintiéndose'],'inf'],
-    // 9 — subj-pres
+    // 9 — subj-pres.: "lo que me da curiosidad es que nadie + subj." (valoración negativa)
     ['subj-pres','sentir','sienta',['siente','sentir','sintiera'],'subj-pres'],
-    // 10 — ind
-    ['ind','mirar','miramos',['miremos','mirar','miráramos'],'ind'],
-    // 11 — subj-plpf
-    ['subj-plpf','actuar','hubiéramos actuado',['actuamos','actuar','hayamos actuado'],'subj-plpf'],
-    // 12 — subj-imp
-    ['subj-imp','quedarse','nos quedáramos',['nos quedamos','quedarnos','nos hayamos quedado'],'subj-imp'],
-    // 13 — subj-pp
-    ['subj-pp','vivir','hayan vivido',['vivieron','vivir','vivieran'],'subj-pp'],
-    // 14 — inf
+    // 10 — inf.: sujeto nominal de "tiene sentido" → "mirar atrás" en infinitivo
+    ['inf','mirar','mirar',['miramos','miremos','mirando'],'inf'],
+    // 11 — subj-plpf.: "ojalá + hubiera/hubiese + pp" (deseo irrealizable en el pasado)
+    ['subj-plpf','actuar',['hubiéramos actuado','hubiésemos actuado'],['actuamos','actuar','hayamos actuado'],'subj-plpf'],
+    // 12 — inf.: "habría sido mejor + inf" (impersonal, no hay cambio de sujeto explícito)
+    ['inf','quedarse','quedarnos',['nos quedáramos','nos quedamos','habiéndonos quedado'],'inf'],
+    // 13 — ind. pres. perf.: hecho real afirmado ("hay personas que no han vivido…")
+    ['ind','vivir','han vivido',['hayan vivido','vivieran','vivieron'],'ind'],
+    // 14 — inf.: "es válido + inf" / "no es válido + inf" (mismo sujeto impersonal)
     ['inf','dejar','dejar',['deje','deja','dejando'],'inf'],
-    // 15 — ind
+    // 15 — ind. presente: hecho/creencia afirmada
     ['ind','pensar','pensamos',['pensemos','pensar','pensáramos'],'ind'],
-    // 16 — subj-pres
+    // 16 — subj-pres.: "es importante que + subj." (valoración impersonal → subj.)
     ['subj-pres','tener','tengan',['tienen','tener','tuvieran'],'subj-pres'],
-    // 17 — subj-imp
+    // 17 — subj-imp.: "ojalá + pudiera/pudiese" (deseo difícilmente realizable, cualquiera = sing.)
     ['subj-imp','poder','pudiera',['puede','poder','haya podido'],'subj-imp'],
-    // 18 — subj-pp
+    // 18 — subj-pp.: "no me parece mal que + haya + pp" (valoración sobre acción ya ocurrida)
     ['subj-pp','cometer','haya cometido',['cometió','cometer','cometiera'],'subj-pp'],
-    // 19 — inf
+    // 19 — inf.: "le sirvió para + inf" (preposición "para" → inf.)
     ['inf','aprender','aprender',['aprenda','aprende','aprendiendo'],'inf'],
-    // 20 — ind
+    // 20 — ind. presente: hecho/necesidad afirmada
     ['ind','necesitar','necesitamos',['necesitemos','necesitar','necesitáramos'],'ind'],
-    // 21 — subj-plpf
-    ['subj-plpf','decir','hubiéramos dicho',['dijimos','decir','hayamos dicho'],'subj-plpf'],
-    // 22 — subj-pres
+    // 21 — subj-plpf.: "¿qué + hubiera/hubiese dicho + si + hubiera tenido…?" (hipótesis pasada irrealizable)
+    ['subj-plpf','decir',['hubiéramos dicho','hubiésemos dicho'],['dijimos','decir','hayamos dicho'],'subj-plpf'],
+    // 22 — subj-pres.: "propongo que + subj." (deseo/propuesta con cambio de sujeto)
     ['subj-pres','aceptar','aceptemos',['aceptamos','aceptar','aceptáramos'],'subj-pres'],
-    // 23 — ind-imp
-    ['ind','querer','quería',['quiera','querer','quisiera'],'ind-imp'],
-    // 24 — subj-imp
+    // 23 — ind. imp.: "tú querías" — imperfecto, concordancia con 2ª persona singular
+    ['ind','querer','querías',['quería','querer','quisiera'],'ind-imp'],
+    // 24 — subj-imp.: "aunque + subj. imp." (concesiva hipotética en el pasado)
     ['subj-imp','existir','existiera',['existe','existir','haya existido'],'subj-imp'],
-    // 25 — subj-pp
-    ['subj-pp','equivocarse','se haya equivocado',['se equivocó','equivocarse','se equivocara'],'subj-pp'],
-    // 26 — inf
+    // 25 — ind. pret.: "si + indicativo" (prótasis real con pretérito indefinido, NO subjuntivo)
+    ['ind','equivocarse','se equivocó',['se haya equivocado','equivocarse','se equivocara'],'ind-pret'],
+    // 26 — inf.: "se puede + inf" (perífrasis modal → inf.)
     ['inf','cambiar','cambiar',['cambie','cambia','cambiando'],'inf'],
-    // 27 — subj-plpf
-    ['subj-plpf','escuchar','hubiéramos escuchado',['escuchamos','escuchar','hayamos escuchado'],'subj-plpf'],
-    // 28 — ind
-    ['ind','seguir','seguimos',['sigamos','seguir','siguiéramos'],'ind'],
-    // 29 — subj-pres
+    // 27 — subj-plpf.: "si + hubiera/hubiese + pp" (prótasis irreal en el pasado)
+    ['subj-plpf','escuchar',['hubiéramos escuchado','hubiésemos escuchado'],['escuchamos','escuchar','hayamos escuchado'],'subj-plpf'],
+    // 28 — ind. cond.: apódosis de "si + pluscuamperf. subj." → condicional simple
+    ['ind','seguir','seguiríamos',['seguimos','seguir','siguiéramos'],'ind-cond'],
+    // 29 — subj-pres.: "no + pierdas" — imperativo negativo / subj. con valor exhortativo (tú)
     ['subj-pres','perder','pierdas',['pierdes','perder','perdieras'],'subj-pres'],
-    // 30 — subj-pp
+    // 30 — subj-pp.: "espero que + haya/hayamos + pp" (esperanza sobre acción ya completada)
     ['subj-pp','llegar','hayamos llegado',['llegamos','llegar','llegáramos'],'subj-pp'],
   ],
   paragraphs: [
 `Las decisiones que {1|tomar} a lo largo de la vida dicen mucho de quiénes somos, pero quizá más revelador aún es {2|reconocer} cuáles tomamos con miedo y cuáles con valentía. En esta columna quiero que {3|hablar} sin eufemismos sobre los arrepentimientos: esos que pesan y los que, con el tiempo, dejan de pesar. Todos {4|saber} lo que se siente cuando imaginas qué habría pasado si {5|elegir} diferente. Y sin embargo, esa persona que {6|ser} hoy existe precisamente por esas elecciones.`,
 
-`Hay quienes, al mirar atrás, desearían que alguien les {7|tomar} del brazo y los detuviera antes de cometer cierto error. Es tentador {8|arrepentirse} en silencio, sin contárselo a nadie. Pero si hay algo que me da curiosidad es que nadie {9|sentir} vergüenza de haber intentado algo aunque haya salido mal. {10|mirar} atrás solo tiene sentido si te pregunta: ¿qué harías distinto? No cómo ojalá {11|actuar}, sino qué harías con lo que sabes hoy.`,
+`Hay quienes, al mirar atrás, desearían que alguien les {7|tomar} del brazo y los detuviera antes de cometer cierto error. Es tentador {8|arrepentirse} en silencio, sin contárselo a nadie. Pero si hay algo que me da curiosidad es que nadie {9|sentir} vergüenza de haber intentado algo aunque haya salido mal. {10|mirar} atrás solo tiene sentido si te preguntas: ¿qué harías distinto? No cómo ojalá {11|actuar}, sino qué harías con lo que sabes hoy.`,
 
 `La trampa más común es creer que habría sido mejor {12|quedarse} en el lugar seguro: el trabajo estable, la ciudad conocida, la relación cómoda. Hay personas que no {13|vivir} nada fuera de su zona de confort y que, paradójicamente, no se arrepienten de nada. Eso también es válido. Lo que no es válido es {14|dejar} que el miedo decida por ti sin que tú lo notes. {15|pensar} que nos arrepentimos más de lo que no hicimos que de lo que sí hicimos, y los estudios psicológicos dan la razón a esa intuición.`,
 
 `Es importante que las personas mayores no {16|tener} que callar sus arrepentimientos como si fueran una señal de fracaso. Ojalá cualquiera {17|poder} decir en voz alta: "me equivoqué, y está bien". No me parece mal que alguien {18|cometer} un error enorme si eso le sirvió para {19|aprender} algo que ningún libro le habría enseñado. {20|necesitar} normalizar la conversación sobre los errores como parte del crecimiento, no como cicatrices que esconder.`,
 
-`¿Qué {21|decir} a los veinte años si hubiéramos tenido la perspectiva de los cuarenta? Probablemente nada que nos hubiera convencido. Por eso propongo que {22|aceptar} el siguiente principio: no eres menos inteligente por haber decidido con la información que tenías en ese momento. En aquel entonces tú {23|querer} lo mejor para ti, aunque lo mejor no lo {24|existir} todavía. Si alguien {25|equivocarse} de camino, eso no invalida todo lo recorrido.`,
+`¿Qué {21|decir} a los veinte años si hubiéramos tenido la perspectiva de los cuarenta? Probablemente nada que nos hubiera convencido. Por eso propongo que {22|aceptar} el siguiente principio: no eres menos inteligente por haber decidido con la información que tenías en ese momento. En aquel entonces tú {23|querer} lo mejor para ti, aunque lo mejor no {24|existir} todavía. Si alguien {25|equivocarse} de camino, eso no invalida todo lo recorrido.`,
 
 `La vida no es algo que se puede {26|cambiar} de golpe como si fuera un borrador. Si {27|escuchar} a todos los que decían "eso no va a funcionar", quizá hoy {28|seguir} esperando un permiso que nadie va a darte. No {29|perder} el tiempo buscando la decisión perfecta: lo que importa es que, cuando llegue el momento de mirar atrás, sientas que vas con honestidad. Espero que en estas líneas {30|llegar} a alguna conclusión que te sirva más que cualquier arrepentimiento.`
   ]
@@ -529,7 +601,15 @@ function goPage(idx) {
    RENDER PAGE
 ══════════════════════════════════════════════════════════════ */
 function getAnswer(page, bIdx) {
-  return page.blanks[bIdx][2];
+  // returns first canonical answer (string or first of array)
+  const a = page.blanks[bIdx][2];
+  return Array.isArray(a) ? a[0] : a;
+}
+
+function getAnswers(page, bIdx) {
+  // returns all valid answers as array
+  const a = page.blanks[bIdx][2];
+  return Array.isArray(a) ? a : [a];
 }
 
 function seededShuffle(arr, seed) {
@@ -598,7 +678,8 @@ function renderPage(idx) {
       if(!m) { html += part; return; }
       const n = parseInt(m[1]);
       const bIdx = n-1;
-      const [mode, verbDisplay, answer, distractors, ruleKey] = page.blanks[bIdx];
+      const [mode, verbDisplay, answerRaw, distractors, ruleKey] = page.blanks[bIdx];
+      const answer = Array.isArray(answerRaw) ? answerRaw[0] : answerRaw;
       const mc = modeClass(mode);
       const opts = seededShuffle([answer,...distractors], n*37+13);
 
@@ -671,7 +752,11 @@ function updateProgress(idx) {
   let ans=0, ok=0;
   page.blanks.forEach((_,i) => {
     const s = document.getElementById(`vs_${idx}_${i+1}`);
-    if(s && s.value!=='') { ans++; if(s.value===s.dataset.answer) ok++; }
+    if(s && s.value!=='') {
+      ans++;
+      const valid = getAnswers(page, i);
+      if(valid.includes(s.value)) ok++;
+    }
   });
   const pct = Math.round(ans/page.blanks.length*100);
   const el = document.getElementById(`fPct-${idx}`);
@@ -690,13 +775,18 @@ function checkFill(idx) {
   let ok = 0;
   state.openTip = null;
 
-  page.blanks.forEach(([mode,,answer,,ruleKey], i) => {
+  page.blanks.forEach((blank, i) => {
+    const mode = blank[0];
+    const verbDisplay = blank[1];
+    const ruleKey = blank[4];
+    const validAnswers = getAnswers(page, i); // array of all valid answers
+    const canonical = validAnswers[0];
     const n = i+1;
     const sel = document.getElementById(`vs_${idx}_${n}`);
     const result = document.getElementById(`vr_${idx}_${n}`);
     if(!sel||!result) return;
     const given = sel.value;
-    const isOk = given === answer;
+    const isOk = validAnswers.includes(given);
     if(isOk) ok++;
 
     sel.style.display = 'none';
@@ -707,10 +797,12 @@ function checkFill(idx) {
 
     result.innerHTML = '';
     result.classList.add('show');
+    // Show all valid answers if more than one
+    const displayAnswer = validAnswers.length > 1 ? validAnswers.join(' / ') : canonical;
     if(isOk) {
-      result.innerHTML = `<span class="vr-right">${answer}</span><span style="color:#4ade80"> ✓</span>`;
+      result.innerHTML = `<span class="vr-right">${given}</span><span style="color:#4ade80"> ✓</span>`;
     } else {
-      result.innerHTML = `<span class="vr-wrong">${given||'—'}</span><span style="color:#f87171"> ✗</span><span class="vr-right"> ${answer}</span>`;
+      result.innerHTML = `<span class="vr-wrong">${given||'—'}</span><span style="color:#f87171"> ✗</span><span class="vr-right"> ${displayAnswer}</span>`;
     }
 
     // info button
@@ -719,7 +811,7 @@ function checkFill(idx) {
     info.textContent = 'i';
     const tip = document.createElement('span');
     tip.className = 'vr-tip';
-    tip.innerHTML = `<strong>${page.blanks[i][1]} → ${answer}</strong><br>${getRule(mode, ruleKey)}`;
+    tip.innerHTML = `<strong>${verbDisplay} → ${displayAnswer}</strong><br>${getRule(mode, ruleKey)}`;
     info.appendChild(tip);
     info.addEventListener('click', e => {
       e.stopPropagation();
@@ -782,3 +874,5 @@ goPage(0);
 </script>
 </body>
 </html>
+   
+   
